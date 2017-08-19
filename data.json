@@ -1,0 +1,200 @@
+[
+ {
+   "Year": "1951-1970",
+   "Immigrants": 4675,
+   "Refugees": 0,
+   "Total": 4675
+ },
+ {
+   "Year": "1971",
+   "Immigrants": 2038,
+   "Refugees": 0,
+   "Total": 2038
+ },
+ {
+   "Year": "1972",
+   "Immigrants": 3412,
+   "Refugees": 0,
+   "Total": 3412
+ },
+ {
+   "Year": "1973",
+   "Immigrants": 4569,
+   "Refugees": 0,
+   "Total": 4569
+ },
+ {
+   "Year": "1974",
+   "Immigrants": 3192,
+   "Refugees": 0,
+   "Total": 3192
+ },
+ {
+   "Year": "1975",
+   "Immigrants": 3039,
+   "Refugees": 125000,
+   "Total": 128039
+ },
+ {
+   "Year": "1976",
+   "Immigrants": 4230,
+   "Refugees": 3200,
+   "Total": 7430
+ },
+ {
+   "Year": "1977",
+   "Immigrants": 4629,
+   "Refugees": 1900,
+   "Total": 6529
+ },
+ {
+   "Year": "1978",
+   "Immigrants": 2892,
+   "Refugees": 11100,
+   "Total": 13992
+ },
+ {
+   "Year": "1979",
+   "Immigrants": 2065,
+   "Refugees": 44500,
+   "Total": 46565
+ },
+ {
+   "Year": "1980",
+   "Immigrants": 4510,
+   "Refugees": 95200,
+   "Total": 99710
+ },
+ {
+   "Year": "1981",
+   "Immigrants": 2238,
+   "Refugees": 65279,
+   "Total": 67517
+ },
+ {
+   "Year": "1982",
+   "Immigrants": 3030,
+   "Refugees": 27396,
+   "Total": 30426
+ },
+ {
+   "Year": "1983",
+   "Immigrants": 3275,
+   "Refugees": 22819,
+   "Total": 26094
+ },
+ {
+   "Year": "1984",
+   "Immigrants": 5203,
+   "Refugees": 24856,
+   "Total": 30059
+ },
+ {
+   "Year": "1985",
+   "Immigrants": 5120,
+   "Refugees": 25222,
+   "Total": 30342
+ },
+ {
+   "Year": "1986",
+   "Immigrants": 15256,
+   "Refugees": 21700,
+   "Total": 36956
+ },
+ {
+   "Year": "1987",
+   "Immigrants": 11489,
+   "Refugees": 19656,
+   "Total": 31145
+ },
+ {
+   "Year": "1988",
+   "Immigrants": 14231,
+   "Refugees": 17571,
+   "Total": 31802
+ },
+ {
+   "Year": "1989",
+   "Immigrants": 25957,
+   "Refugees": 21924,
+   "Total": 47881
+ },
+ {
+   "Year": "1990",
+   "Immigrants": 37773,
+   "Refugees": 27797,
+   "Total": 65570
+ },
+ {
+   "Year": "1991",
+   "Immigrants": 43939,
+   "Refugees": 28396,
+   "Total": 72335
+ },
+ {
+   "Year": "1992",
+   "Immigrants": 45580,
+   "Refugees": 26795,
+   "Total": 72375
+ },
+ {
+   "Year": "1993",
+   "Immigrants": 29365,
+   "Refugees": 31401,
+   "Total": 60766
+ },
+ {
+   "Year": "1994",
+   "Immigrants": 14027,
+   "Refugees": 34110,
+   "Total": 48137
+ },
+ {
+   "Year": "1995",
+   "Immigrants": 13157,
+   "Refugees": 32250,
+   "Total": 45407
+ },
+ {
+   "Year": "1996",
+   "Immigrants": 12367,
+   "Refugees": 16107,
+   "Total": 28474
+ },
+ {
+   "Year": "1997",
+   "Immigrants": 16222,
+   "Refugees": 6612,
+   "Total": 22834
+ },
+ {
+   "Year": "1998",
+   "Immigrants": 12728,
+   "Refugees": 10266,
+   "Total": 22994
+ },
+ {
+   "Year": "1999",
+   "Immigrants": 15890,
+   "Refugees": 9622,
+   "Total": 25512
+ },
+ {
+   "Year": "2000",
+   "Immigrants": 21171,
+   "Refugees": 2839,
+   "Total": 24010
+ },
+ {
+   "Year": "2001",
+   "Immigrants": 25180,
+   "Refugees": 3109,
+   "Total": 28289
+ },
+ {
+   "Year": "Total",
+   "Immigrants": 412449,
+   "Refugees": 756627,
+   "Total": 1169076
+ }
+]
