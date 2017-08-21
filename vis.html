@@ -3,7 +3,7 @@
 <style>
 
 body {
-  background: #000;
+  background: #eee;
 }
 
 ellipse {
@@ -26,26 +26,113 @@ path {
 
 </style>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
+<ul class="legend"></ul>
+
+<script src="//d3js.org/d3.v4.min.js"></script>
 <script>
+var total,n,m,degrees;
+var spermatozoon;
 
 var dataset;
 var data;
+var keys=[];
 d3.json("data.json", function(d){
   dataset = d;
-
+  dataset.forEach(function(d){
+    keys.push(d.Year);
+  });
   // console.log(dataset);
-
+  margin = {
+    top: 5, //top: 20,
+    right: 20,
+    bottom: 40,
+    left: 50
+  };
 
 var width = 960,
     height = 500;
 
-var total = dataset[20].Immigrants+dataset[20].Refugees,
+// var selectYear;
+
+total = dataset[20].Immigrants+dataset[20].Refugees,
     n = total*0.001,
     m = 12,
     degrees = 180 / Math.PI;
 console.log(total+' : total : '+n);
 
+function drawVis(tt){
+  n=tt*0.001;
+  n = Math.floor(n);
+
+
+  console.log('redraw ' + n );
+  var spermatozoa = d3.range(n).map(function() {
+    var x = Math.random() * width,
+        y = Math.random() * height;
+    return {
+      vx: Math.random() * 2 - 1,
+      vy: Math.random() * 2 - 1,
+      path: d3.range(m).map(function() { return [x, y]; }),
+      count: 0
+    };
+  });
+
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var g = svg.selectAll("g")
+      .data(spermatozoa)
+    .enter().append("g");
+
+  var head = g.append("ellipse")
+      .attr("rx", 6.5)
+      .attr("ry", 4);
+
+  g.append("path")
+      .datum(function(d) { return d.path.slice(0, 3); })
+      .attr("class", "mid");
+
+
+      d3.timer(function() {
+        n = Math.floor(n);
+
+        for (var i = -1; i < n; i++) {
+              spermatozoon = spermatozoa[i],
+              path = spermatozoa[i].path,
+              dx = spermatozoa[i].vx,
+              dy = spermatozoa[i].vy,
+              x = path[0][0] += dx,
+              y = path[0][1] += dy,
+              speed = Math.sqrt(dx * dx + dy * dy),
+              count = speed *  10,
+              k1 = -5 - speed / 3;
+
+          // Bounce off the walls.
+          if (x < 0 || x > width) spermatozoon.vx *= -1;
+          if (y < 0 || y > height) spermatozoon.vy *= -1;
+
+          // // Swim!
+          // for (var j = 0; ++j < m;) {
+          //   var vx = x - path[j][0],
+          //       vy = y - path[j][1],
+          //       k2 = Math.sin(((spermatozoon.count += count) + j * 3) / 300) / speed;
+          //   path[j][0] = (x += dx / speed * k1) - dy * k2;
+          //   path[j][1] = (y += dy / speed * k1) + dx * k2;
+          //   speed = Math.sqrt((dx = vx) * dx + (dy = vy) * dy);
+          // }
+        }
+
+        head.attr("transform", headTransform);
+        // tail.attr("d", tailPath);
+      });
+
+      function headTransform(d) {
+        return "translate(" + d.path[0] + ")rotate(" + Math.atan2(d.vy, d.vx) * degrees + ")";
+      }
+
+}
 var spermatozoa = d3.range(n).map(function() {
   var x = Math.random() * width,
       y = Math.random() * height;
@@ -81,7 +168,7 @@ var tail = g.selectAll("path");
 
 d3.timer(function() {
   for (var i = -1; ++i < n;) {
-    var spermatozoon = spermatozoa[i],
+        spermatozoon = spermatozoa[i],
         path = spermatozoon.path,
         dx = spermatozoon.vx,
         dy = spermatozoon.vy,
@@ -117,6 +204,118 @@ function headTransform(d) {
 // function tailPath(d) {
 //   return "M" + d.join("L");
 // }
+  // legend  !!!!
+  var clipPath = svg.append("defs")
+	.append("clipPath")
+	.attr("id", "clip")
+	.append("rect")
+	.attr("x", 0)
+	.attr("y", 0);
+
+	var view = svg
+	.append("rect")
+	.attr("class", "view")
+	.attr("x", 0)
+	.attr("y", 0);
+
+
+	var x = d3.scaleBand().padding(0.1), // No domains yet!
+	    y = d3.scaleLinear();
+
+	var xz = x,
+	    xy = y; // Used to store zoom scales
+
+	var colorScale = d3.scaleOrdinal(d3.schemeCategory5);
+
+	var colorScale20 = d3.scaleOrdinal() // My color scales
+	.domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+	.range(["#21569a", "#2d74d0", "#4196fe", "#80b8fd", "#7a2c99", "#ab2ecd", "#cf44fc", "#d883fc", "#a91c50", "#dd2170", "#ff3e9e", "#ff81be", "#b8370d", "#fa5802", "#ff753f", "#ff9f7f", "#9a9121", "#c8b331", "#fee041", "#f9df82"]);
+
+	var colorScale10 = d3.scaleOrdinal()
+	.domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+	.range(["#2d74d0", "#80b8fd", "#ab2ecd", "#d883fc", "#dd2170", "#ff81be", "#fa5802", "#ff9f7f", "#c8b331", "#f9df82"]);
+
+	var colorScale5 = d3.scaleOrdinal()
+	.domain([1, 2, 3, 4, 5])
+	.range([ "#B6CCA1", "#F5F3BB", "#F5F3BB"]);
+
+	//console.log(keys[2]);
+
+	// keys = d3.keys(dataset[0]).slice(2); // here is the key to remove stuff
+
+
+	dataset.forEach(function (d, i) {
+	  d.total = d3.sum(d3.values(d).slice(1));
+	});
+	//console.log(d3.max(total));
+	//console.log(dataset);
+
+
+	var fKeys = keys.slice();
+
+	var xAxis = d3.axisBottom(x).tickSizeInner(2).tickSizeOuter(0);
+	var yAxis = d3.axisLeft(y).ticks(5).tickSizeInner(-width).tickSizeOuter(0);
+	var xAxisGroup = svg.append('g').attr('class', 'x-axis-group').append('g').attr('class', 'x d3-axis').attr('transform', 'translate(0,' + height + ')');
+	var yAxisGroup = svg.append('g').attr('class', 'y d3-axis').attr('transform', 'translate(0,0)');
+
+	var g = svg.append('g').attr("class", "d3-group-wrap"); // keep d3 groups organized and used for correct clipping
+
+	var yAxisLabel = svg.append('text')
+	.attr('class', 'd3-chart-label label-y-axis')
+	.text('Y Axis Units')
+	.attr('transform', 'rotate(-90)')
+	.attr('y', -margin.left / 2)
+	.attr('dy', -5)
+	.attr('text-anchor', 'middle');
+
+
+	var fKeyReference = fKeys.map(function (key) {
+	  return true; //used to indicate if the corresponding key is active
+	});
+
+	function getActiveKeys(reference) {
+	  return reference.map(function (state, index) {
+	    if (state) {
+	      return keys[index]; //just keep keys whoes state is true
+	    }
+	    return false; //return false to be filered
+	  }).filter(function (name) {
+	    return name
+	  });
+	}
+	var legendItem = d3.select(".legend") // Create legend (not needed inside redraw function, renders only once)
+	.selectAll("li")
+	.data(keys)
+	.enter()
+	.append("li")
+	.on('click', function (d) {
+	  if (fKeys.length === 1 && fKeys[0] === d) {
+      return;
+	  }
+	  var index = keys.indexOf(d);
+	  fKeyReference[index] = !fKeyReference[index]; // toggle state of fKeyReference
+	  fKeys = getActiveKeys(fKeyReference);
+    total = dataset[index].Immigrants+dataset[index].Refugees;
+    d3.selectAll("svg").remove()
+    console.log(total);
+    // drawVis();
+    // return total;
+    return drawVis(total);
+	  // redraw();
+	});
+
+	legendItem
+	  .append("span")
+	  .attr("class", "color-square")
+	  .style("background", function (d) {
+	  return colorScale5(d);
+	});
+
+	legendItem
+	  .append("span")
+	  .text(function (d) {
+	  return (d)
+	});
 
 })
 </script>
