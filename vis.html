@@ -26,7 +26,7 @@ path {
 
 </style>
 <body>
-<ul class="legend"></ul>
+<ul class="legend" style="list-style:none"></ul>
 
 <script src="//d3js.org/d3.v4.min.js"></script>
 <script>
@@ -290,6 +290,8 @@ function headTransform(d) {
 	.data(keys)
 	.enter()
 	.append("li")
+  .style("display","inline")
+  .style("padding", "5px")
 	.on('click', function (d) {
 	  if (fKeys.length === 1 && fKeys[0] === d) {
       return;
