@@ -3,7 +3,7 @@
 <style>
 
 body {
-  background: #eee;
+  background: #333;
 }
 
 ellipse {
@@ -54,16 +54,16 @@ var width = 960,
 
 // var selectYear;
 
-total = dataset[20].Immigrants+dataset[20].Refugees,
+total = dataset[5].Immigrants+dataset[5].Refugees,
     n = total*0.001,
     m = 12,
     degrees = 180 / Math.PI;
 console.log(total+' : total : '+n);
 
-function drawVis(tt){
-  n=tt*0.001;
-  n = Math.floor(n);
-
+function drawVis(n){
+  // n=tt*0.001;
+  // n = Math.floor(n);
+  n=n;
 
   console.log('redraw ' + n );
   var spermatozoa = d3.range(n).map(function() {
@@ -96,9 +96,11 @@ function drawVis(tt){
 
 
       d3.timer(function() {
-        n = Math.floor(n);
+        // n = Math.floor(n);
 
-        for (var i = -1; i < n; i++) {
+        console.log(n+'!')
+        for (var i = 0; i < n; i++) {
+              console.log(i)
               spermatozoon = spermatozoa[i],
               path = spermatozoa[i].path,
               dx = spermatozoa[i].vx,
@@ -167,7 +169,7 @@ g.append("path")
 var tail = g.selectAll("path");
 
 d3.timer(function() {
-  for (var i = -1; ++i < n;) {
+  for (var i = 0; ++i < n;) {
         spermatozoon = spermatozoa[i],
         path = spermatozoon.path,
         dx = spermatozoon.vx,
@@ -300,7 +302,9 @@ function headTransform(d) {
     console.log(total);
     // drawVis();
     // return total;
-    return drawVis(total);
+    n=total*0.001;
+    n = Math.floor(n);
+    drawVis(n);
 	  // redraw();
 	});
 
