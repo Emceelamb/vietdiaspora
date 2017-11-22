@@ -8,8 +8,6 @@ Using immigration data collected from SEARAC, I display the diaspora of the Viet
 ### Interactive Bar Chart
 ![alt text](https://markofthelam.com/wp-content/uploads/2017/08/diasporagraph-1.gif "Interactive Bar Chart")
 
-(https://markofthelam.com/wp-content/uploads/2017/08/diasporagraph-1.gif)
-
 ### Particle System
 
 ![alt text](https://markofthelam.com/wp-content/uploads/2017/08/particle_diaspora-300x168.png "Particle System")
